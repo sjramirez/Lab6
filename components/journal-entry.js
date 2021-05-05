@@ -68,28 +68,29 @@ class JournalEntry extends HTMLElement {
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
    */
   set entry(entry) {
-    /* 
-     * TODO: set the entry title, date, and content fields in this component
-     */
-    
-    // CODE GOES HERE
+
+    this.setAttribute('entry', entry);
+
+    let article = this.shadowRoot.querySelector("article");
+
+    let title = article.getElementsByClassName("entry-title")[0];
+    let date = article.getElementsByClassName("entry-date")[0];
+    let content = article.getElementsByClassName("entry-content")[0];
+
+    title.textContent = entry.title;
+    date.textContent = entry.date;
+    content.textContent = entry.content;
 
     if (entry.image) {
-      let entryImage;
-      /*
-       * TODO: if the entry contains an image resource,
-       * 1. create an image element with the correct class
-       * 2. set the image src and alt attributes
-       * 3. append the image element to the appropriate location in this component
-       */
+      let entryImage = document.createElement('img');
 
-      // CODE GOES HERE vvv
+      entryImage.setAttribute('class', "entry-image");
+      entryImage.setAttribute('src', entry.image.src);
+      entryImage.setAttribute('alt', entry.image.alt);
+
+      article.appendChild(entryImage);
 
 
-
-
-
-      // CODE GOES HERE ^^^
 
       /* ------------- do not edit this code, it is for your debugging purposes ------------- */
       try {
@@ -101,22 +102,14 @@ class JournalEntry extends HTMLElement {
 
     }
     if (entry.audio) {
-      let entryAudio;
-      /*
-       * TODO: if the entry contains an audio resource,
-       * 1. create an audio element with the correct class
-       * 2. set the audio src and enable audio controls
-       * 3. append the audio element to the appropriate location in this component
-       */
+      let entryAudio = document.createElement('audio');
 
-      // CODE GOES HERE vvv
-
-
-
-
-
-
-      // CODE GOES HERE ^^^
+      entryAudio.setAttribute('class', 'entry-audio');
+      entryAudio.setAttribute('src', entry.audio);
+      entryAudio.setAttribute('controls', "")
+      
+      article.appendChild(entryAudio);
+  
       
 
       
